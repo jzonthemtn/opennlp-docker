@@ -9,8 +9,8 @@ This image and repository are maintained by [UpslopeNLP](https://www.upslopenlp.
 To pull and run a container:
 
 ```
-docker pull upslopenlp/opennlp:2.0.0
-docker run --rm -it upslopenlp/opennlp:2.0.0 /bin/bash
+docker pull upslopenlp/opennlp:latest
+docker run --rm -it upslopenlp/opennlp:latest /bin/bash
 ```
 
 The Apache OpenNLP binaries will be available in the container under `/opt/apache-opennlp/bin`.
@@ -28,14 +28,14 @@ Now run the container:
 
 ```
 # Convert the training/test data to OpenNLP format.
-docker run -v /tmp:/tmp --rm upslopenlp/opennlp:2.0.0 /opt/apache-opennlp/bin/opennlp TokenNameFinderConverter conll03 -lang eng -types per -data /tmp/train.txt > /tmp/corpus_train.txt
-docker run -v /tmp:/tmp --rm upslopenlp/opennlp:2.0.0 /opt/apache-opennlp/bin/opennlp TokenNameFinderConverter conll03 -lang eng -types per -data /tmp/test.txt > /tmp/corpus_test.txt
+docker run -v /tmp:/tmp --rm upslopenlp/opennlp:latest /opt/apache-opennlp/bin/opennlp TokenNameFinderConverter conll03 -lang eng -types per -data /tmp/train.txt > /tmp/corpus_train.txt
+docker run -v /tmp:/tmp --rm upslopenlp/opennlp:latest /opt/apache-opennlp/bin/opennlp TokenNameFinderConverter conll03 -lang eng -types per -data /tmp/test.txt > /tmp/corpus_test.txt
 
 # Train a person recognition model.
-docker run -v /tmp:/tmp --rm upslopenlp/opennlp:2.0.0 /opt/apache-opennlp/bin/opennlp TokenNameFinderTrainer -model /tmp/en_ner_person.bin -lang eng -data /tmp/corpus_train.txt -nameTypes person
+docker run -v /tmp:/tmp --rm upslopenlp/opennlp:latest /opt/apache-opennlp/bin/opennlp TokenNameFinderTrainer -model /tmp/en_ner_person.bin -lang eng -data /tmp/corpus_train.txt -nameTypes person
 
 # Evaluate the model.
-docker run -v /tmp:/tmp --rm upslopenlp/opennlp:2.0.0 /opt/apache-opennlp/bin/opennlp TokenNameFinderEvaluator -model /tmp/en_ner_person.bin -data /tmp/corpus_test.txt -nameTypes person
+docker run -v /tmp:/tmp --rm upslopenlp/opennlp:latest /opt/apache-opennlp/bin/opennlp TokenNameFinderEvaluator -model /tmp/en_ner_person.bin -data /tmp/corpus_test.txt -nameTypes person
 ```
 
 The above commands format the training/test data, train a person recognition model, and then evaluates the model. Expected output:
