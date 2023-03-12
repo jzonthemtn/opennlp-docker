@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=${1:-"2.1.1"}
+. opennlp.properties
 
-docker push upslopenlp/opennlp:$VERSION
+docker push upslopenlp/opennlp:${OPENNLP_VERSION}
 docker push upslopenlp/opennlp:latest

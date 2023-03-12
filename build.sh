@@ -1,5 +1,7 @@
 #!/bin/bash
 
-VERSION=${1:-"2.1.1"}
+. opennlp.properties
 
-docker build --build-arg OPENNLP_VERSION=$VERSION -t upslopenlp/opennlp:$VERSION -t upslopenlp/opennlp:latest .
+echo "Building image for OpenNLP ${OPENNLP_VERSION}..."
+
+docker build --build-arg OPENNLP_VERSION=${OPENNLP_VERSION} -t upslopenlp/opennlp:${OPENNLP_VERSION} -t upslopenlp/opennlp:latest .
